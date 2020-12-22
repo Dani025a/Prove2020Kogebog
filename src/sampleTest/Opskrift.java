@@ -1,4 +1,4 @@
-package sample;
+package sampleTest;
 
 public class Opskrift {
 }
