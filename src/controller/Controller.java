@@ -1,9 +1,6 @@
 package controller;
 
-import View.IngredientFX;
-import View.IngredientTableFX;
-import View.RecepieFX;
-import View.RecepieTableFX;
+import View.*;
 import exceptions.NoIngredientException;
 import exceptions.NoRecepieException;
 import javafx.fxml.FXML;
@@ -25,7 +22,7 @@ public class Controller implements Initializable {
     public ListView<RecepieFX> listView = new ListView<>();
 
     @FXML
-    private TextArea descriptionText;
+    public TextArea descriptionText;
 
     @FXML
     private ImageView imageBox;
@@ -48,10 +45,12 @@ public class Controller implements Initializable {
     IngredientFX selectedIngredient;
     int RecepieID;
     int ingredientID;
+    int description;
 
     RecepieTable recepieTable = new RecepieTable();
     RecepieTableFX recepieTableFX = new RecepieTableFX();
     IngredientTableFX ingredientTableFX = new IngredientTableFX();
+    DescriptionTableFX descriptionTableFX = new DescriptionTableFX();
 
 
 
@@ -108,6 +107,19 @@ public class Controller implements Initializable {
         }
     }
 
+    public void addDescription(String description) throws NoRecepieException{
+        this.openRecepie.addDescription(description);
+        this.descriptionTableFX.Update(this);
+    }
+
+    public void onActionAddDescription(){
+        try {
+            addDescription(descriptionText.getText());
+        } catch (NoRecepieException noRecepieException) {
+            noRecepieException.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -139,6 +151,7 @@ public class Controller implements Initializable {
         }
         this.recepieTableFX.Update(this);
         this.ingredientTableFX.Update(this);
+        this.descriptionTableFX.Update(this);
     }
 
     public Recepie getOpenRecepie() {
