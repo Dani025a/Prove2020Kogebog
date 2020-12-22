@@ -14,6 +14,10 @@ public class Description implements Serializable {
         this.description = description;
     }
 
+    public Description() {
+
+    }
+
     public String getDescription() {
         return description;
     }

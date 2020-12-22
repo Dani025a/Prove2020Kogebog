@@ -1,7 +1,6 @@
 package controller;
 
 import View.*;
-import exceptions.NoIngredientException;
 import exceptions.NoRecepieException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -92,18 +91,16 @@ public class Controller implements Initializable {
         }
     }
 
-    public void addIngredient(String name) throws NoRecepieException, NoIngredientException {
+    public void addIngredient(String name) throws NoRecepieException {
         this.openRecepie.addIngredient(name,ingredientID);
         this.ingredientTableFX.Update(this);
     }
 
-    public void onActionAddIngredient(){
+    public void onActionAddIngredient() {
         try {
             addIngredient(ingredientNameTextField.getText());
         } catch (NoRecepieException noRecepieException) {
             noRecepieException.printStackTrace();
-        } catch (NoIngredientException e) {
-            e.printStackTrace();
         }
     }
 
